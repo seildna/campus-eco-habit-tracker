@@ -110,3 +110,27 @@ button:hover {
   margin-top: 1rem;
   line-height: 1.5;
 }
+
+.insights {
+  margin-top: 1rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: 10px;
+  background: #f3f9f5;
+  border: 1px solid var(--border);
+}
+
+.insights p {
+  margin: 0.25rem 0;
+}
+
+h3 {
+  margin-top: 1.2rem;
+  margin-bottom: 0.55rem;
+}
+
+.history-list {
+  margin: 0;
+  padding-left: 1rem;
+  display: grid;
+  gap: 0.4rem;
+}
