@@ -5,10 +5,32 @@ const feedback = document.getElementById("feedback");
 const historyList = document.getElementById("history-list");
 const streakValue = document.getElementById("streak-value");
 const averageValue = document.getElementById("average-value");
+const planChallengeBtn = document.getElementById("plan-challenge-btn");
+const challengeList = document.getElementById("challenge-list");
 const habitInputs = Array.from(document.querySelectorAll('input[name="habit"]'));
 
 const STORAGE_KEY = "campusEcoTrackerHistory";
 const DAY_MS = 24 * 60 * 60 * 1000;
+const CHALLENGES = {
+  low: [
+    "Bring a reusable bottle to campus for 3 days.",
+    "Recycle one item after each class this week.",
+    "Skip single-use cutlery at least 4 times.",
+    "Turn off classroom lights when your group leaves.",
+  ],
+  medium: [
+    "Walk or bike to campus for 2 days.",
+    "Avoid printing lecture notes for one full week.",
+    "Join one campus clean-up or awareness activity.",
+    "Reduce disposable coffee cups to zero this week.",
+  ],
+  high: [
+    "Walk, bike, or carpool for at least 4 days.",
+    "Log 6 eco-actions daily and mentor one classmate.",
+    "Lead a mini recycling awareness post in your class group.",
+    "Design a low-energy checklist for your study group.",
+  ],
+};
 
 function getSelectedScore() {
   return habitInputs
@@ -90,6 +112,43 @@ function renderHistory(history) {
   streakValue.textContent = `${calculateStreak(history)} day(s)`;
 }
 
+function pickItems(items, count) {
+  const shuffled = [...items]
+    .map((value) => ({ value, rank: Math.random() }))
+    .sort((a, b) => a.rank - b.rank)
+    .map((entry) => entry.value);
+
+  return shuffled.slice(0, count);
+}
+
+function generateWeeklyPlan() {
+  const history = loadHistory();
+  const avgScore = history.length
+    ? history.reduce((sum, entry) => sum + entry.score, 0) / history.length
+    : getSelectedScore();
+
+  const tier = avgScore >= 75 ? "high" : avgScore >= 45 ? "medium" : "low";
+  const items = pickItems(CHALLENGES[tier], 3);
+  const starter =
+    tier === "high"
+      ? "Keep momentum with this advanced challenge set:"
+      : tier === "medium"
+      ? "Solid progress. Try this balanced weekly challenge:"
+      : "Start small and build consistency with this weekly challenge:";
+
+  return [starter, ...items];
+}
+
+function handlePlanChallenge() {
+  challengeList.innerHTML = "";
+  const plan = generateWeeklyPlan();
+  plan.forEach((step) => {
+    const item = document.createElement("li");
+    item.textContent = step;
+    challengeList.appendChild(item);
+  });
+}
+
 function handleCalculate() {
   const score = getSelectedScore();
   scoreValue.textContent = `${score} / 100`;
@@ -120,4 +179,5 @@ function handleSave() {
 
 calculateBtn.addEventListener("click", handleCalculate);
 saveBtn.addEventListener("click", handleSave);
+planChallengeBtn.addEventListener("click", handlePlanChallenge);
 renderHistory(loadHistory());
