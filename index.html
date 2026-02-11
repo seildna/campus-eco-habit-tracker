@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campus Eco Habit Tracker</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="page-header">
+      <h1>Campus Eco Habit Tracker</h1>
+      <p>Track simple daily actions that support a greener university campus.</p>
+    </header>
+
+    <main class="layout">
+      <section class="card" aria-labelledby="habits-title">
+        <h2 id="habits-title">Today&apos;s Habits</h2>
+        <p>Select the actions you completed today:</p>
+
+        <form id="habit-form">
+          <label><input type="checkbox" name="habit" value="15" /> Walked or biked to campus</label>
+          <label><input type="checkbox" name="habit" value="10" /> Used a reusable water bottle</label>
+          <label><input type="checkbox" name="habit" value="10" /> Recycled at least one item</label>
+          <label><input type="checkbox" name="habit" value="15" /> Avoided single-use plastic</label>
+          <label><input type="checkbox" name="habit" value="20" /> Turned off lights/AC when leaving</label>
+          <label><input type="checkbox" name="habit" value="20" /> Used digital notes instead of printing</label>
+          <label><input type="checkbox" name="habit" value="10" /> Joined an eco-friendly campus activity</label>
+
+          <div class="actions">
+            <button type="button" id="calculate-btn">Calculate Score</button>
+            <button type="button" id="save-btn">Save Today</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card" aria-labelledby="results-title">
+        <h2 id="results-title">Your Sustainability Score</h2>
+        <div class="score-row">
+          <p class="score-label">Today&apos;s Score</p>
+          <p id="score-value" class="score-value">0 / 100</p>
+        </div>
+        <p id="feedback" class="feedback">Choose your habits and calculate your score.</p>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
