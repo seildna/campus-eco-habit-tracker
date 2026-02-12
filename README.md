@@ -28,9 +28,3 @@ The app encourages students to build consistent sustainability behavior through:
 4. Click `Save Today` to store a daily entry.
 5. Click `Build Weekly Plan` to generate a sustainability challenge.
 
-## Suggested screenshots for submission
-- Home page with habit checklist
-- Score and feedback after calculation
-- History section showing saved entries
-- Generated weekly challenge plan
-- GitHub issues board and merged pull requests
